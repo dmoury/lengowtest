@@ -11,13 +11,14 @@ def create(request):
         form = OrderForm(request.POST)  
         if form.is_valid():  
             try:  
-                form.save()  
+                form.save()
+                messages.success(request, "Order created successfully")
                 return redirect('/list')  
             except:  
                 pass  
     else:  
         form = OrderForm()  
-    return render(request,'index.html',{'form':form})  
+    return render(request,'new.html',{'form':form})  
 
 def show(request):  
     orders = Order.objects.all()  
