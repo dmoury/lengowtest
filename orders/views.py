@@ -5,6 +5,9 @@ from xml.dom import minidom, Node
 from django.http import HttpResponse
 from django.contrib import messages
 import requests
+import os
+
+filename = "tmp_data.xml"
 
 def create(request):  
     if request.method == "POST":  
@@ -46,7 +49,6 @@ def destroy(request, id):
 # Get orders from remote XML file.
 def getOrders():
     data = requests.get("http://test.lengow.io/orders-test.xml").text
-    filename = "tmp_data.xml"
     f = open(filename, "w")
     f.write(data)
     f.close()
@@ -82,6 +84,7 @@ def upload(request):
             newOrder = Order(None, orderId, marketplace, amount, currency, marketplaceStatus, lengowStatus, formatedDate)
 
             newOrder.save()
-
+    #delete temporary file
+    os.remove(filename)
     messages.success(request, "Orders uploaded successfuly !")
     return redirect("/list")
