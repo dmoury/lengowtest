@@ -30,8 +30,9 @@ def edit(request, id):
 def update(request, id):  
     order = Order.objects.get(id=id)  
     form = OrderForm(request.POST, instance = order)  
-    if form.is_valid():  
-        form.save()  
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Order modified successfully")
         return redirect("/list")  
     return render(request, 'edit.html', {'order': order})  
 

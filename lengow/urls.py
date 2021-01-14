@@ -24,7 +24,7 @@ urlpatterns = [
     path('',views.show),  
     path('list',views.show),  
     path('delete/<int:id>', views.destroy),  
+    path('edit/<int:id>', views.edit),  
+    path('update/<int:id>', views.update),  
     # path('new', views.create),  
-    # path('edit/<int:id>', views.edit),  
-    # path('update/<int:id>', views.update),  
 ]

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Liste</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+
+<body class="container">
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="max-witdh:600px">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <h1 class="text-center text-primary"> Edit order </h1>
+    <form method="POST" class="post-form" action="/update/{{order.id}}">  
+        {% csrf_token %}  
+        <div class="container"> 
+            <div class="form-group row">  
+                <label class="col-sm-1 col-form-label"></label>  
+                <div class="col-sm-4">  
+                    <h3>Update Details</h3>  
+                </div>  
+            </div>  
+        <div class="form-group row">  
+            <label class="col-sm-2 col-form-label">Order ID</label>  
+            <div class="col-sm-4">  
+                <input type="text" name="order_id" id="id_order_id" required maxlength="20" value="{{ order.order_id }}"/>  
+            </div>  
+        </div>  
+        <div class="form-group row">  
+            <label class="col-sm-2 col-form-label">Marketplace</label>  
+            <div class="col-sm-4">  
+                <input type="text" name="marketplace" id="id_marketplace" required maxlength="100" value="{{ order.marketplace }}" />  
+            </div>  
+        </div>  
+        <div class="form-group row">  
+            <label class="col-sm-2 col-form-label">Amount</label>  
+            <div class="col-sm-4">  
+                <input type="number" name="amount" id="id_amount" required maxlength="254" value="{{ order.amount }}" />  
+            </div>  
+        </div>  
+        <div class="form-group row">  
+            <label class="col-sm-2 col-form-label">Currency</label>  
+            <div class="col-sm-4">  
+                <input type="text" name="currency" id="id_currency" required maxlength="15" value="{{ order.currency }}" />  
+            </div>  
+        <div class="form-group row">  
+            <label class="col-sm-2 col-form-label">Purchase date</label>  
+            <div class="col-sm-4">  
+                <input type="date" name="purchase_date" id="id_purchase_date" value="{{ order.purchase_date |date:"Y-m-d"}}" />  
+            </div>  
+        </div>  
+        <div class="form-group row">  
+            <label class="col-sm-2 col-form-label">Marketplace Status</label>  
+            <div class="col-sm-4">  
+                <input type="text" name="marketplace_status" id="id_marketplace_status" required maxlength="15" value="{{ order.marketplace_status }}" />  
+            </div>  
+        </div>  
+        <div class="form-group row">  
+            <label class="col-sm-2 col-form-label">Lengow Status</label>  
+            <div class="col-sm-4">  
+                <input type="text" name="lengow_status" id="id_lengow_status" required maxlength="15" value="{{ order.lengow_status }}" />  
+            </div>  
+        </div>  
+        <div class="form-group row">  
+            <label class="col-sm-1 col-form-label"></label>  
+            <div class="col-sm-4">  
+                <button type="submit" class="btn btn-success">Update</button>  
+            </div>  
+        </div>  
+        </div>  
+    </form>  
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script>
+        toast.show()
+    </script>
+</body>
+
+</html>
