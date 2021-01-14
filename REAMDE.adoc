@@ -1,0 +1,19 @@
+== LENGOW TEST
+
+Sample CRUD App and XML files uploader.
+
+== Prerequisites
+
+. Python 3 
+. Django
+. MySQL
+
+== Run
+
+Before executing modify the settings file to define the information of your database in `settings.py`
+
+==== Execution commande
+
+```
+python3 manage.py runserver
+````
